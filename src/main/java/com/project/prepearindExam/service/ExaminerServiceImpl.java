@@ -20,7 +20,7 @@ public class ExaminerServiceImpl implements ExaminerService {
 
     @Override
     public List<Question> getQuestions(int amount) {
-        if (amount >= questionService.getQuestions().size()) {
+        if (amount > questionService.getQuestions().size()) {
             throw new OutOfRangeExeption();
         }
         List<Question> questions = new ArrayList<>();
