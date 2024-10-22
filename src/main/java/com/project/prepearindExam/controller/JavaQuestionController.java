@@ -3,6 +3,7 @@ package com.project.prepearindExam.controller;
 import com.project.prepearindExam.models.Question;
 import com.project.prepearindExam.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,11 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/exam/java")
-public class QuestionController {
+public class JavaQuestionController {
     private final QuestionService questionService;
 
+
     @Autowired
-    public QuestionController(QuestionService questionService){
+    public JavaQuestionController(@Qualifier("javaQuestionService") QuestionService questionService){
         this.questionService = questionService;
     }
 
