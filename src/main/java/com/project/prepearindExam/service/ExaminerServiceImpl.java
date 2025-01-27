@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 @Service
@@ -45,7 +43,7 @@ public class ExaminerServiceImpl implements ExaminerService {
         if (amount > size) {
             throw new OutOfRangeExeption();
         }
-        List<Question> questions = new ArrayList<>();
+        Set<Question> questions = new HashSet<>();
         while (questions.size() < amount) {
             int path = random.nextInt(2);
             Question question;
@@ -54,11 +52,9 @@ public class ExaminerServiceImpl implements ExaminerService {
             }else {
                 question = getRandomMathQuestion();
             }
-            if (!questions.contains(question)) {
-                questions.add(question);
-            }
+            questions.add(question);
         }
-        return questions;
+        return questions.stream().toList();
     }
 
 }
